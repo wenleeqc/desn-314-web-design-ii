@@ -1,16 +1,27 @@
 <html>
 <head>
 	<title>DESN 314 Github Pages Test</title>
-	<script>
-		const one = 1;
-		const numOne = 1;
-		alert(one);
-		console.log(`${one} is the loneliest number...`);
-	</script>
+	<style>
+		.content {
+			font-size: 3em;
+		}
+	</style>
 </head>
 
 <body>
-	Test
-</body>
+	<div class="btns">
+		<button onclick="changeText('blue')">Blue</button>
+		<button onclick="changeText('red')">Red</button>
+	</div>
 
+	<div class="content"></div>
+
+	<script>
+		let content = document.querySelector('.content');
+		function changeText(text) {
+			content.innerHTML = text;
+			content.style.color = text;
+		}
+	</script>
+</body>
 </html>
