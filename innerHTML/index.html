@@ -2,25 +2,37 @@
 <head>
 	<title>DESN 314 Github Pages Test</title>
 	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
 		.content {
+			width: 100px;
+			height: 100px;
+			background-color: white;
+			margin: 1em;
 			font-size: 3em;
 		}
 	</style>
 </head>
 
 <body>
-	<div class="btns">
+	<div class="container">
+		<div class="content">test</div>
+		<div class="btns">
 		<button onclick="changeText('blue')">Blue</button>
 		<button onclick="changeText('red')">Red</button>
+		</div>
 	</div>
-
-	<div class="content"></div>
+	
 
 	<script>
 		let content = document.querySelector('.content');
 		function changeText(text) {
 			content.innerHTML = text;
-			content.style.color = text;
+			content.style.backgroundColor = text;
 		}
 	</script>
 </body>
