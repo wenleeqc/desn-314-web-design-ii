@@ -83,15 +83,15 @@
 	<div class="container">
 		<div class="content"></div>
 		<div class="btns">
-			<button onclick="changeText('circle')">Circle</button>
-			<button onclick="changeText('square')">Square</button>
+			<button onclick="changeShape('circle')">Circle</button>
+			<button onclick="changeShape('square')">Square</button>
 		</div>
 	</div>
 	
 	<script>
 		const content = document.querySelector('.content');
-		function changeText(text) {
-			content.innerHTML = `<div class="${text}"></div>`;
+		function changeShape(shape) {
+			content.innerHTML = `<div class="${shape}"></div>`;
 		}
 	</script>
 </body>
