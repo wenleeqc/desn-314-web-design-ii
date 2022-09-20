@@ -52,7 +52,6 @@
 		.door-3 {
 			background-color: green;
 		}
-
 	</style>
 	<title>Skills Assignment 2 - Let's Make a Deal!</title>
 </head>
@@ -88,13 +87,20 @@
 			}
 		}
 
-		// doors.forEach((door) => { s
-		// 	door.addEventListener('click', () => textResponse.textContent = door.classList);
+		for(let i=0; i < doors.length; i++) {
+			doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
+		}
 
 		for(let i=0; i < doors.length; i++) {
 			doors[i].addEventListener('click', (e) => {
-				// e.target.style.backgroundColor = "aqua";
-				e.target.textContent = prizes[i];
+				console.log(e.target.children[0].style);
+				if(e.target.children[0].style.visibility === "hidden") {
+					e.target.children[0].style.visibility = "visible";
+					console.log('there')
+				} else {
+					e.target.children[0].style.visibility = "hidden";
+					console.log('here');
+				}
 			});
 		}
 
