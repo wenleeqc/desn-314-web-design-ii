@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		html {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			height:  100%;
+		}
+
+		.container {
+			height:  100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: pink;
+			overflow: hidden;
+		}
+
+		.doors {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.door {
+			width:  5em;
+			height:  10em;
+			margin-right:  2em;
+			cursor:  pointer;
+		}
+
+		.door-1 {
+			background-color: blue;
+		}
+
+		.door-2 {
+			background-color: red;
+		}
+
+		.door-3 {
+			background-color: green;
+		}
+
+	</style>
+	<title>Skills Assignment 2 - Let's Make a Deal!</title>
+</head>
+<body>
+	<div class="container">
+		<div class="doors">
+			<div class="door door-1"></div>
+			<div class="door door-2"></div>
+			<div class="door door-3"></div>
+		</div>
+		<div class="text-response">test</div>
+		<div class="again">button</div>
+	</div>
+
+	<script>
+		const doors = document.querySelectorAll(".door");
+		console.log(doors);
+		const textResponse = document.querySelector(".text-response");
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student loan given', 'an apple', 'all expenses paid vacation', 'subway card', 'big screen tv'];
+		let prizes = [];
+
+		console.log(prizes.includes('a new ca'));
+
+		// get prizes from prize list
+		while(prizes.length < doors.length) {
+			let index = Math.floor(Math.random() * prizeList.length);
+			if(prizes.includes(prizeList[index])) {
+				console.log('in list');
+				continue;
+			} else {
+				prizes.push(prizeList[index]);
+				console.log(prizes);
+			}
+		}
+
+		// doors.forEach((door) => { s
+		// 	door.addEventListener('click', () => textResponse.textContent = door.classList);
+
+		for(let i=0; i < doors.length; i++) {
+			doors[i].addEventListener('click', (e) => {
+				// e.target.style.backgroundColor = "aqua";
+				e.target.textContent = prizes[i];
+			});
+		}
+
+		function chooseDoor() {
+			console.log(doors)
+		}
+	</script>
+</body>
+</html>
