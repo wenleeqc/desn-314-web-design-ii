@@ -32,17 +32,24 @@
 		.doors {
 			display: flex;
 			flex-direction: row;
+			gap: 5em;
 		}
 
 		.door {
-			width:  5em;
-			height:  10em;
-			margin-right:  2em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width:  15em;
+			height:  20em;
 			cursor:  pointer;
 		}
 
 		.door-1 {
 			background-color: blue;
+		}
+
+		.door-1:hover {
+			background-color: darkblue;
 		}
 
 		.door-2 {
@@ -53,6 +60,14 @@
 			background-color: green;
 		}
 
+		.door > p {
+			font-size: 1em;
+			font-weight: bold;
+			text-transform: uppercase;
+			text-align: center;
+			background-color: #fff;
+		}
+
 		.btn {
 			border: 1em solid #fff;
 			border-radius: 25px;
@@ -61,11 +76,21 @@
 			cursor: pointer;
 			visibility: hidden;
 		}
+
+		h1 {
+			font-size: 6em;
+			color: #fff;
+		}
+
+		.text-response {
+			font-size: 3em;
+		}
 	</style>
 	<title>Skills Assignment 2 - Let's Make a Deal!</title>
 </head>
 <body>
 	<div class="container">
+		<h1>Let's Make A Deal</h1>
 		<div class="doors">
 			<div class="door door-1"></div>
 			<div class="door door-2"></div>
@@ -80,7 +105,7 @@
 		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
 		const btn = document.querySelector(".btn");
-		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'a all expenses paid vacation', 'a subway card', 'a big screen tv'];
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'];
 		let hasChosenDoor = false;
 
 		setPrizes();
