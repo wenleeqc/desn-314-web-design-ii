@@ -52,6 +52,15 @@
 		.door-3 {
 			background-color: green;
 		}
+
+		.btn {
+			border: 1em solid #fff;
+			border-radius: 25px;
+			background-color: transparent;
+			padding: .5em 1em;
+			cursor: pointer;
+			visibility: hidden;
+		}
 	</style>
 	<title>Skills Assignment 2 - Let's Make a Deal!</title>
 </head>
@@ -62,50 +71,76 @@
 			<div class="door door-2"></div>
 			<div class="door door-3"></div>
 		</div>
-		<div class="text-response">test</div>
-		<div class="again">button</div>
+		<div class="text-response">Choose a door. Win a prize!</div>
+		<button class="btn">Play again?</button>
 	</div>
 
 	<script>
 		const doors = document.querySelectorAll(".door");
 		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
-		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student loan given', 'an apple', 'all expenses paid vacation', 'subway card', 'big screen tv'];
-		let prizes = [];
+		const btn = document.querySelector(".btn");
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'a all expenses paid vacation', 'a subway card', 'a big screen tv'];
+		let hasChosenDoor = false;
 
-		console.log(prizes.includes('a new ca'));
+		setPrizes();
+		handleDoors();
 
-		// get prizes from prize list
-		while(prizes.length < doors.length) {
-			let index = Math.floor(Math.random() * prizeList.length);
-			if(prizes.includes(prizeList[index])) {
-				console.log('in list');
-				continue;
-			} else {
-				prizes.push(prizeList[index]);
-				console.log(prizes);
+		btn.addEventListener('click', resetGame);
+
+		function handleDoorClick(element) {
+				console.log(element.target.children[0].style);
+				element.target.children[0].style.visibility = "visible";
+
+				if(!hasChosenDoor) {
+					textResponse.textContent = `You won ${element.target.children[0].textContent}!`;
+					btn.style.visibility = "visible";
+					hasChosenDoor = true;
+					console.log('has chosen')
+				}
+				
+				element.target.removeEventListener('click', handleDoorClick);
+		}
+
+		function handleDoors() {
+			for(let i=0; i < doors.length; i++) {
+				doors[i].addEventListener('click', handleDoorClick);
 			}
 		}
 
-		for(let i=0; i < doors.length; i++) {
-			doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
-		}
-
-		for(let i=0; i < doors.length; i++) {
-			doors[i].addEventListener('click', (e) => {
-				console.log(e.target.children[0].style);
-				if(e.target.children[0].style.visibility === "hidden") {
-					e.target.children[0].style.visibility = "visible";
-					console.log('there')
+		function setPrizes() {
+			const prizes = [];
+			while(prizes.length < doors.length) {
+				let index = Math.floor(Math.random() * prizeList.length);
+				if(prizes.includes(prizeList[index])) {
+					console.log('in list');
+					continue;
 				} else {
-					e.target.children[0].style.visibility = "hidden";
-					console.log('here');
+					prizes.push(prizeList[index]);
+					console.log(prizes);
 				}
-			});
+			}
+
+			for(let i=0; i < doors.length; i++) {
+				doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
+			}
 		}
 
-		function chooseDoor() {
-			console.log(doors)
+		function resetGame() {
+			console.log('test')
+			btn.style.visibility = "hidden";
+			textResponse.textContent = "Choose a door. Win a prize!";
+			hasChosenDoor = false;
+
+			const doors = document.querySelectorAll('.door');
+			doors.forEach((e) => {
+				e.innerHTML = "";
+			});
+
+			setPrizes();
+			handleDoors();
+			console.log('reset...');
+			console.log(doors);
 		}
 	</script>
 </body>
