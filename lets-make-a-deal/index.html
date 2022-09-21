@@ -3,7 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"> 
+		<style>
 		* {
 			box-sizing: border-box;
 			margin: 0;
@@ -20,12 +23,12 @@
 		}
 
 		.container {
-			height:  100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			background-color: pink;
+			background-color: black;
+			height:  100%;
 			overflow: hidden;
 		}
 
@@ -39,35 +42,51 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: 1em double #fff;
-			border-radius: 49% 51% 10% 10% / 19% 18% 0% 0%;
-			width:  15em;
-			height:  20em;
-			cursor:  pointer;
+			border-radius: 49% 51% 10% 10% / 19% 18% 8% 8%;
+			width: 15em;
+			height: 20em;
+			padding: 0 1em;
+			cursor: pointer;
 		}
 
 		.door-1 {
 			background-color: blue;
+			border: 1em inset rgb(0,0,190);
+			transform: skew(0, -15deg) translateY(2.5em) rotateY(20deg);
+			box-shadow: -40px 40px 100px blue;
 		}
 
 		.door-1:hover {
-			background-color: darkblue;
+			background-color: rgb(0,0,90);
 		}
 
 		.door-2 {
 			background-color: red;
+			border: 1em inset rgb(190,0,0);
+			box-shadow: 0 40px 100px red;
+		}
+
+		.door-2:hover {
+			background-color: rgb(80,0,0);
 		}
 
 		.door-3 {
 			background-color: green;
+			border: 1em inset rgb(0,100,0);
+			transform: skew(0, 15deg) translateY(2.5em) rotateY(-20deg);
+			box-shadow: 40px 40px 100px green;
+		}
+
+		.door-3:hover {
+			background-color: rgb(0,50,0);
 		}
 
 		.door > p {
-			font-size: 1em;
+			font-size: 1.5em;
 			font-weight: bold;
 			text-transform: uppercase;
 			text-align: center;
-			background-color: #fff;
+			color: #fff;
 		}
 
 		.door > p.number {
@@ -75,24 +94,42 @@
 			border-radius: 50%;
 			width: 1.3em;
 			height: 1.2em;
+			background-color: white;
+			color: #000;
+		}
+
+		h1 {
+			font-family: 'Bangers', serif;
+			font-size: clamp(2rem, 14vw + 1rem, 17rem); /*14vw*/
+			color: white;
+			transform: translateY(-0.1em);
+		}
+
+		.text-response {
+			margin-top: 2em;
+			transform-origin: 50% 100%;
+    		transform:perspective(300px) rotateX(25deg);
+			font-size: 3em;
+			font-weight: 900;
+			text-shadow: 0 15px 25px #aaa;
+			color: #fff;
 		}
 
 		.btn {
-			border: 1em solid #fff;
+			border: 0.5em solid white;
 			border-radius: 25px;
 			background-color: transparent;
+			margin-top: 2em;
 			padding: .5em 1em;
+			font-size: 1em;
+			color: white;
 			cursor: pointer;
 			visibility: hidden;
 		}
 
-		h1 {
-			font-size: 6em;
-			color: #fff;
-		}
-
-		.text-response {
-			font-size: 3em;
+		.btn:hover {
+			border-color: gold;
+			color: gold;
 		}
 	</style>
 	<title>Skills Assignment 2 - Let's Make a Deal!</title>
@@ -107,6 +144,7 @@
 		</div>
 		<div class="text-response">Choose a door. Win a prize!</div>
 		<button class="btn">Play again?</button>
+		
 	</div>
 
 	<script>
@@ -114,7 +152,7 @@
 		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
 		const btn = document.querySelector(".btn");
-		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate'];
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', "an apple computer", 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate'];
 		let hasChosenDoor = false;
 
 		let prizes = setPrizes();
@@ -131,24 +169,23 @@
 
 		function handleDoorClick(element) {
 			console.log('element 1', element);
-			const numDoor = element.target.textContent;
-			console.log(numDoor);
+			const doorNum = element.target.textContent;
+			const prize = prizes[doorNum-1];
+			console.log(doorNum);
 			console.log('element', element.target);
 			if(element.target.classList.contains('door')) {
 				console.log(true);
 				element.target.removeEventListener('click', handleDoorClick);
-				element.target.innerHTML = `<p>${prizes[numDoor-1]}</p>`;
-				
+				element.target.innerHTML = `<p>${prize}</p>`;
 			} else {
 				console.log(false);
 				element.target.parentNode.removeEventListener('click', handleDoorClick);
-				element.target.parentNode.innerHTML =`<p>${prizes[numDoor-1]}</p>`;
-				
+				element.target.parentNode.innerHTML =`<p>${prize}</p>`;
 				console.log('current element', element.target);
 			}
 
 			if(!hasChosenDoor) {
-				textResponse.textContent = `You win ${element.target.textContent}!`;
+				textResponse.textContent = `You win ${prize}!`;
 				btn.style.visibility = "visible";
 				hasChosenDoor = true;
 				console.log('has chosen')
