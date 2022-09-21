@@ -39,6 +39,10 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			border: 1em double #fff;
+			/* border-top-left-radius: 50%;
+			border-top-right-radius: 50%; */
+			border-radius: 49% 51% 10% 10% / 19% 18% 0% 0%;
 			width:  15em;
 			height:  20em;
 			cursor:  pointer;
@@ -49,6 +53,7 @@
 		}
 
 		.door-1:hover {
+			content: "asjf;ljwae;rja;wjef;";
 			background-color: darkblue;
 		}
 
@@ -92,9 +97,9 @@
 	<div class="container">
 		<h1>Let's Make A Deal</h1>
 		<div class="doors">
-			<div class="door door-1"></div>
-			<div class="door door-2"></div>
-			<div class="door door-3"></div>
+			<div class="door door-1">1</div>
+			<div class="door door-2">2</div>
+			<div class="door door-3">3</div>
 		</div>
 		<div class="text-response">Choose a door. Win a prize!</div>
 		<button class="btn">Play again?</button>
@@ -105,7 +110,7 @@
 		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
 		const btn = document.querySelector(".btn");
-		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'];
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'];
 		let hasChosenDoor = false;
 
 		setPrizes();
@@ -118,7 +123,7 @@
 				element.target.children[0].style.visibility = "visible";
 
 				if(!hasChosenDoor) {
-					textResponse.textContent = `You won ${element.target.children[0].textContent}!`;
+					textResponse.textContent = `You win ${element.target.children[0].textContent}!`;
 					btn.style.visibility = "visible";
 					hasChosenDoor = true;
 					console.log('has chosen')
