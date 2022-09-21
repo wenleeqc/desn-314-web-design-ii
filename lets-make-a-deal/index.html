@@ -6,7 +6,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet"> 
-		<style>
+	<style>
 		* {
 			box-sizing: border-box;
 			margin: 0;
@@ -109,12 +109,12 @@
 
 		.text-response {
 			margin-top: 2em;
-			transform-origin: 50% 100%;
-    		transform:perspective(300px) rotateX(25deg);
 			font-size: 3em;
 			font-weight: 900;
-			text-shadow: 0 15px 25px #aaa;
 			color: #fff;
+			text-shadow: 0 15px 25px #aaa;
+			transform-origin: 50% 100%;
+			transform:perspective(300px) rotateX(25deg);
 		}
 
 		.btn {
@@ -152,16 +152,13 @@
 
 	<script>
 		const doors = document.querySelectorAll(".door");
-		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
 		const btn = document.querySelector(".btn");
 		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', "an apple computer", 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate'];
 		let hasChosenDoor = false;
-
 		let prizes = setPrizes();
-		console.log('prizes', prizes);
-		handleDoors();
 
+		handleDoors();
 		btn.addEventListener('click', resetGame);
 
 		function handleDoors() {
@@ -171,27 +168,21 @@
 		}
 
 		function handleDoorClick(element) {
-			console.log('element 1', element);
 			const doorNum = element.target.textContent;
 			const prize = prizes[doorNum-1];
-			console.log(doorNum);
-			console.log('element', element.target);
+
 			if(element.target.classList.contains('door')) {
-				console.log(true);
 				element.target.removeEventListener('click', handleDoorClick);
 				element.target.innerHTML = `<p>${prize}</p>`;
 			} else {
-				console.log(false);
 				element.target.parentNode.removeEventListener('click', handleDoorClick);
 				element.target.parentNode.innerHTML =`<p>${prize}</p>`;
-				console.log('current element', element.target);
 			}
 
 			if(!hasChosenDoor) {
 				textResponse.textContent = `You win ${prize}!`;
 				btn.style.visibility = "visible";
 				hasChosenDoor = true;
-				console.log('has chosen')
 			}
 		}
 
@@ -200,18 +191,15 @@
 			while(prizes.length < doors.length) {
 				let index = Math.floor(Math.random() * prizeList.length);
 				if(prizes.includes(prizeList[index])) {
-					console.log('in list');
 					continue;
 				} else {
 					prizes.push(prizeList[index]);
-					console.log(prizes);
 				}
 			}
 			return prizes;
 		}
 
 		function resetGame() {
-			console.log('test')
 			btn.style.visibility = "hidden";
 			textResponse.textContent = "Choose a door. Win a prize!";
 			hasChosenDoor = false;
@@ -223,8 +211,6 @@
 
 			prizes = setPrizes();
 			handleDoors();
-			console.log('reset...');
-			console.log(doors);
 		}
 	</script>
 </body>
