@@ -40,8 +40,6 @@
 			justify-content: center;
 			align-items: center;
 			border: 1em double #fff;
-			/* border-top-left-radius: 50%;
-			border-top-right-radius: 50%; */
 			border-radius: 49% 51% 10% 10% / 19% 18% 0% 0%;
 			width:  15em;
 			height:  20em;
@@ -135,9 +133,6 @@
 			console.log('element 1', element);
 			const numDoor = element.target.textContent;
 			console.log(numDoor);
-			//element.target.innerHTML = `<p>${prizes[numDoor-1]}</p>`;
-			//element.classList.remove('number');
-			//element.target.textContent = `${prizes[numDoor-1]}`;
 			console.log('element', element.target);
 			if(element.target.classList.contains('door')) {
 				console.log(true);
@@ -170,10 +165,6 @@
 				}
 			}
 			return prizes;
-
-			// for(let i=0; i < doors.length; i++) {
-			// 	doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
-			// }
 		}
 
 		function resetGame() {
