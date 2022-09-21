@@ -53,7 +53,6 @@
 		}
 
 		.door-1:hover {
-			content: "asjf;ljwae;rja;wjef;";
 			background-color: darkblue;
 		}
 
@@ -71,6 +70,13 @@
 			text-transform: uppercase;
 			text-align: center;
 			background-color: #fff;
+		}
+
+		.door > p.number {
+			font-size: 5em;
+			border-radius: 50%;
+			width: 1.3em;
+			height: 1.2em;
 		}
 
 		.btn {
@@ -97,9 +103,9 @@
 	<div class="container">
 		<h1>Let's Make A Deal</h1>
 		<div class="doors">
-			<div class="door door-1">1</div>
-			<div class="door door-2">2</div>
-			<div class="door door-3">3</div>
+			<div class="door door-1"><p class="number">1</p></div>
+			<div class="door door-2"><p class="number">2</p></div>
+			<div class="door door-3"><p class="number">3</p></div>
 		</div>
 		<div class="text-response">Choose a door. Win a prize!</div>
 		<button class="btn">Play again?</button>
@@ -110,32 +116,45 @@
 		console.log(doors);
 		const textResponse = document.querySelector(".text-response");
 		const btn = document.querySelector(".btn");
-		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'];
+		const prizeList = ['a new car', 'a bag of rice' , '1 million dollars', '50 bucks', 'student debt relief', 'an apple', 'an all expenses paid vacation', 'a subway card', 'a big screen tv', 'a bar of soap', 'a bar of gold', 'a bar of chocolate'];
 		let hasChosenDoor = false;
 
-		setPrizes();
+		let prizes = setPrizes();
+		console.log('prizes', prizes);
 		handleDoors();
 
 		btn.addEventListener('click', resetGame);
-
-		function handleDoorClick(element) {
-				console.log(element.target.children[0].style);
-				element.target.children[0].style.visibility = "visible";
-
-				if(!hasChosenDoor) {
-					textResponse.textContent = `You win ${element.target.children[0].textContent}!`;
-					btn.style.visibility = "visible";
-					hasChosenDoor = true;
-					console.log('has chosen')
-				}
-				
-				element.target.removeEventListener('click', handleDoorClick);
-		}
 
 		function handleDoors() {
 			for(let i=0; i < doors.length; i++) {
 				doors[i].addEventListener('click', handleDoorClick);
 			}
+		}
+
+		function handleDoorClick(element) {
+			console.log('element 1', element);
+			const numDoor = element.target.textContent;
+			console.log(numDoor);
+			//element.target.innerHTML = `<p>${prizes[numDoor-1]}</p>`;
+			//element.classList.remove('number');
+			//element.target.textContent = `${prizes[numDoor-1]}`;
+			console.log('element', element.target);
+			if(element.target.classList.contains('door')) {
+				console.log(true);
+				element.target.innerHTML = `<p>${prizes[numDoor-1]}</p>`;
+			} else {
+				console.log(false);
+				element.target.parentNode.innerHTML =`<p>${prizes[numDoor-1]}</p>`;
+			}
+
+			if(!hasChosenDoor) {
+				textResponse.textContent = `You win ${element.target.textContent}!`;
+				btn.style.visibility = "visible";
+				hasChosenDoor = true;
+				console.log('has chosen')
+			}
+			
+			element.target.removeEventListener('click', handleDoorClick);
 		}
 
 		function setPrizes() {
@@ -150,10 +169,11 @@
 					console.log(prizes);
 				}
 			}
+			return prizes;
 
-			for(let i=0; i < doors.length; i++) {
-				doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
-			}
+			// for(let i=0; i < doors.length; i++) {
+			// 	doors[i].innerHTML = `<p style="visibility: hidden;">${prizes[i]}</p>`;
+			// }
 		}
 
 		function resetGame() {
@@ -163,11 +183,11 @@
 			hasChosenDoor = false;
 
 			const doors = document.querySelectorAll('.door');
-			doors.forEach((e) => {
-				e.innerHTML = "";
-			});
+			for(let i = 0; i < doors.length; i++) {
+				doors[i].innerHTML = `<p class="number">${i+1}<p>`;
+			}
 
-			setPrizes();
+			prizes = setPrizes();
 			handleDoors();
 			console.log('reset...');
 			console.log(doors);
