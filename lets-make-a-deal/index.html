@@ -102,7 +102,7 @@
 
 		h1 {
 			font-family: 'Bangers', serif;
-			font-size: clamp(2rem, 14vw + 1rem, 17rem); /*14vw*/
+			font-size: clamp(2rem, 14vw + 1rem, 17rem);
 			color: white;
 			transform: translateY(-0.1em);
 		}
@@ -161,24 +161,33 @@
 		handleDoors();
 		btn.addEventListener('click', resetGame);
 
+
+		// functions
+
+		// add event listeners to door elements
 		function handleDoors() {
 			for(let i=0; i < doors.length; i++) {
 				doors[i].addEventListener('click', handleDoorClick);
 			}
 		}
 
+		// handle door click event
 		function handleDoorClick(element) {
 			const doorNum = element.target.textContent;
 			const prize = prizes[doorNum-1];
 
+			// set prize for door
 			if(element.target.classList.contains('door')) {
+				// if clicked door div element
 				element.target.removeEventListener('click', handleDoorClick);
 				element.target.innerHTML = `<p>${prize}</p>`;
 			} else {
+				// if clicked door number p element
 				element.target.parentNode.removeEventListener('click', handleDoorClick);
 				element.target.parentNode.innerHTML =`<p>${prize}</p>`;
 			}
 
+			// set winning prize text
 			if(!hasChosenDoor) {
 				textResponse.textContent = `You win ${prize}!`;
 				btn.style.visibility = "visible";
@@ -186,6 +195,7 @@
 			}
 		}
 
+		// choose prizes from prize array
 		function setPrizes() {
 			const prizes = [];
 			while(prizes.length < doors.length) {
@@ -199,6 +209,7 @@
 			return prizes;
 		}
 
+		// reset game
 		function resetGame() {
 			btn.style.visibility = "hidden";
 			textResponse.textContent = "Choose a door. Win a prize!";
