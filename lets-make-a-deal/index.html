@@ -136,10 +136,15 @@
 			console.log('element', element.target);
 			if(element.target.classList.contains('door')) {
 				console.log(true);
+				element.target.removeEventListener('click', handleDoorClick);
 				element.target.innerHTML = `<p>${prizes[numDoor-1]}</p>`;
+				
 			} else {
 				console.log(false);
+				element.target.parentNode.removeEventListener('click', handleDoorClick);
 				element.target.parentNode.innerHTML =`<p>${prizes[numDoor-1]}</p>`;
+				
+				console.log('current element', element.target);
 			}
 
 			if(!hasChosenDoor) {
@@ -148,8 +153,6 @@
 				hasChosenDoor = true;
 				console.log('has chosen')
 			}
-			
-			element.target.removeEventListener('click', handleDoorClick);
 		}
 
 		function setPrizes() {
