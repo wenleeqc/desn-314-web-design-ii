@@ -55,6 +55,7 @@
 			border: 1em inset rgb(0,0,190);
 			transform: skew(0, -15deg) translateY(2.5em) rotateY(20deg);
 			box-shadow: -40px 40px 100px blue;
+			transition: background-color 0.3s ease-in-out;
 		}
 
 		.door-1:hover {
@@ -65,6 +66,7 @@
 			background-color: red;
 			border: 1em inset rgb(190,0,0);
 			box-shadow: 0 40px 100px red;
+			transition: background-color 0.3s ease-in-out;
 		}
 
 		.door-2:hover {
@@ -76,6 +78,7 @@
 			border: 1em inset rgb(0,100,0);
 			transform: skew(0, 15deg) translateY(2.5em) rotateY(-20deg);
 			box-shadow: 40px 40px 100px green;
+			transition: background-color 0.3s ease-in-out;
 		}
 
 		.door-3:hover {
@@ -117,6 +120,19 @@
 			transform:perspective(300px) rotateX(25deg);
 		}
 
+		@keyframes fade {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
+		.text-response > p {
+			animation: fade 1s;
+		}
+
 		.btn {
 			border: 0.5em solid white;
 			border-radius: 25px;
@@ -128,6 +144,7 @@
 			color: white;
 			cursor: pointer;
 			visibility: hidden;
+			transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 		}
 
 		.btn:hover {
@@ -145,7 +162,7 @@
 			<div class="door door-2"><p class="number">2</p></div>
 			<div class="door door-3"><p class="number">3</p></div>
 		</div>
-		<div class="text-response">Choose a door. Win a prize!</div>
+		<div class="text-response"><p>Choose a door. Win a prize!</p></div>
 		<button class="btn">Play again?</button>
 		
 	</div>
