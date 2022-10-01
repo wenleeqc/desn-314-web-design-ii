@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	const car = {
+		color: 'red',
+		numDoors: 6,
+		numWheels: 4,
+		model: "X",
+		description: function() {
+			const txt = `Model ${this.model} car in ${this.color} with ${this.numDoors} doors and ${this.numWheels} wheels.`
+			const newh1 = document.createElement('h1');
+			newh1.textContent = txt;
+			document.body.append(newh1);
+		}
+	}
+
+	car.description();
+</script>
+</body>
+</html>
