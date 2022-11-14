@@ -1,6 +1,6 @@
 const b = document.querySelector('body');
 const cardFeed = document.querySelector('.card-feed');
-const src = "../assets/placeholder.png";
+const src = "./assets/placeholder.png";
 
 /* 
 product card template
