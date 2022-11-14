@@ -1,0 +1,22 @@
+body {
+    padding-top: 2rem;
+}
+
+.filter {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2rem;
+    height: fit-content;
+}
+
+.form-criteria {
+    margin-bottom: 2rem;
+}
+
+.range {
+    width: 6rem;
+}
+
+.reset-filter {
+    font-size: .7rem;
+}
