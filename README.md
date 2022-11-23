@@ -8,6 +8,7 @@
 3. Practice Activity 2: [Javascript Object Exercise](https://wenleeqc.github.io/object/object-lesson.html)
 4. Midterm: [Angry Cat](https://wenleeqc.github.io/angry-cat/)
 5. Exquisite Reuse: [Part 2](https://wenleeqc.github.io/exquisite-reuse-part-2/)
+6. Exquisite Reuse: [Part 3](https://wenleeqc.github.io/exquisite-reuse-part-3/)
 
 ## Built With:
 - HTML
