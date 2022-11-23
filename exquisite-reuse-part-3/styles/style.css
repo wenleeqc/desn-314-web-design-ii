@@ -1,0 +1,45 @@
+body {
+    padding-top: 2rem;
+}
+
+.filter {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2rem;
+    height: fit-content;
+}
+
+.form-criteria {
+    margin-bottom: 2rem;
+}
+
+.form-data {
+    width: 4.5rem;
+    font-size: .75rem;
+}
+
+h5 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    font-size: .9rem;
+}
+
+.lot {
+    font-size: .7em;
+    margin-top: -0.6rem;
+}
+
+#submit {
+    font-size: .8rem;
+}
+
+#reset {
+    font-size: .5rem;
+}
+
+h6 {
+    font-size: .7rem;
+}
